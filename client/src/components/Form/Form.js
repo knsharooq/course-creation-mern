@@ -55,7 +55,7 @@ export const AddOrEditForm = ( {editId, setEditId = () => {} } ) => {
 
     return (
         <Row className="d-flex justify-content-center form bg-white py-3">
-            <Col sm={12} className="text-center"><h3>Add or Edit Memory</h3></Col>
+            <Col sm={12} className="text-center"><h3>Join Course</h3></Col>
             <Col sm={12} className="mt-3">
                 <Label>Title:</Label>
                 <Input className="mt-1" placeholder="Enter Title" value={formData?.title || ""} onChange={(e)=>setFormData({...formData,title:e.target.value})}/>
@@ -69,7 +69,7 @@ export const AddOrEditForm = ( {editId, setEditId = () => {} } ) => {
                 <Input className="mt-1" placeholder="Enter Your Name" value={formData?.creator || ""} onChange={(e)=>setFormData({...formData,creator:e.target.value})} />
             </Col>
             <Col sm={12} className="mt-4 text-center">
-                <Button color="primary" className="button" onClick={onSubmitPost}>Submit</Button>
+                <Button color="primary" className="button" onClick={onSubmitPost}>Create</Button>
             </Col>
             {isEmpty &&
                 <Col sm={12} className="mt-3 text-center">
