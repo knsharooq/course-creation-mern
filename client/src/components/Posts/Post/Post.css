@@ -1,0 +1,32 @@
+
+.post-card {
+    background-color: rgba(255, 255, 255);
+    color: rgb(47, 49, 28);
+    box-shadow: 2px 4px 4px 2px rgb(216, 207, 207);
+    border-radius: 10px;
+    height: 300px;
+}
+
+.title{
+    font-size: 25px;
+    font-weight: bold;
+    font-family: cursive;
+}
+
+.message{
+    font-size: 18px;
+    font-weight: 500;
+    font-family: cursive;
+    overflow: auto;
+    height: 130px;
+}
+
+.sign{
+    font-size: 15px;
+    font-weight: 400;
+    font-family: monospace;
+}
+
+.icon{
+    color: rgb(254, 255, 246);
+}

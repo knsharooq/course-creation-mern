@@ -1,0 +1,16 @@
+
+.post {
+    margin-left: 20px;
+}
+
+.heading {
+    text-shadow: 3px 3px 3px rgb(216, 207, 207);
+    color: rgb(47, 49, 28, 0.733);;
+    font-weight: bold;
+    font-size: 45px;
+}
+
+.posts-container{
+    background-color: rgba(197, 194, 194, 0.433);
+    border-radius: 10px;
+}
