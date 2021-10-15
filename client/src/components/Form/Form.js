@@ -39,7 +39,7 @@ export const AddOrEditForm = ( {editId, setEditId = () => {} } ) => {
     
     const onSubmitPost = () => {
         setIsEmpty(false)
-        if(!formData?.title || !formData?.message || !formData?.creator ){
+        if(!formData?.name || !formData?.phone || !formData?.mail || !formData?.course ){
             setIsEmpty(true);
             return
         }
@@ -54,22 +54,26 @@ export const AddOrEditForm = ( {editId, setEditId = () => {} } ) => {
     }
 
     return (
-        <Row className="d-flex justify-content-center form bg-white py-3">
-            <Col sm={12} className="text-center"><h3>Join Course</h3></Col>
+        <Row className="d-flex justify-content-center form py-3">
+            <Col sm={12} className="text-center"><h3>{`${editId ? "Edit" : "Add"} Course`}</h3></Col>
             <Col sm={12} className="mt-3">
-                <Label>Title:</Label>
-                <Input className="mt-1" placeholder="Enter Title" value={formData?.title || ""} onChange={(e)=>setFormData({...formData,title:e.target.value})}/>
+                <Label>Name:</Label>
+                <Input className="mt-1" placeholder="Enter Full Name" value={formData?.name || ""} onChange={(e)=>setFormData({...formData,name:e.target.value})}/>
             </Col>
             <Col sm={12} className="mt-3">
-                <Label>Message:</Label>
-                <Input type="textarea" className="mt-1" placeholder="Enter Message" value={formData?.message || ""} onChange={(e)=>setFormData({...formData,message:e.target.value})} />
+                <Label>Phone:</Label>
+                <Input type="number" className="mt-1" placeholder="Enter Contact Number" value={formData?.phone || ""} onChange={(e)=>setFormData({...formData,phone:e.target.value})} />
             </Col>
             <Col sm={12} className="mt-3">
-                <Label>Author:</Label>
-                <Input className="mt-1" placeholder="Enter Your Name" value={formData?.creator || ""} onChange={(e)=>setFormData({...formData,creator:e.target.value})} />
+                <Label>Email:</Label>
+                <Input className="mt-1" placeholder="Enter Email Id" value={formData?.mail || ""} onChange={(e)=>setFormData({...formData,mail:e.target.value})} />
+            </Col>
+            <Col sm={12} className="mt-3">
+                <Label>Course:</Label>
+                <Input className="mt-1" placeholder="Enter Course Name" value={formData?.course || ""} onChange={(e)=>setFormData({...formData,course:e.target.value})} />
             </Col>
             <Col sm={12} className="mt-4 text-center">
-                <Button color="primary" className="button" onClick={onSubmitPost}>Create</Button>
+                <Button color="primary" className="button" onClick={onSubmitPost}>Save</Button>
             </Col>
             {isEmpty &&
                 <Col sm={12} className="mt-3 text-center">
@@ -78,12 +82,12 @@ export const AddOrEditForm = ( {editId, setEditId = () => {} } ) => {
             }
             {isAdded &&
                 <Col sm={12} className="mt-3 text-center">
-                    <p className="text-success">Memory Added!</p>
+                    <p className="text-success">Profile Added!</p>
                 </Col>
             }
             {isUpdated &&
                 <Col sm={12} className="mt-3 text-center">
-                    <p className="text-success">Memory Updated!</p>
+                    <p className="text-success">Profile Updated!</p>
                 </Col>
             }
         </Row>

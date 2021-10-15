@@ -1,5 +1,5 @@
 import * as api from '../api'
-import { CREATE, DELETE, LIKE, READ, UPDATE } from '../constants/actionTypes';
+import { CREATE, DELETE, READ, UPDATE } from '../constants/actionTypes';
 
 export const createPost = (post) => async (dispatch) => {
     try {
@@ -37,11 +37,11 @@ export const deletePost = (id) => async (dispatch) => {
     }
 }
 
-export const likePost = (id) => async (dispatch) => {
-    try {
-        const { data } = await api.likePost(id);
-        dispatch({ type: LIKE, payload: data })
-    } catch (error) { 
-        console.log(error.message)
-    }
-}
+// export const likePost = (id) => async (dispatch) => {
+//     try {
+//         const { data } = await api.likePost(id);
+//         dispatch({ type: LIKE, payload: data })
+//     } catch (error) { 
+//         console.log(error.message)
+//     }
+// }

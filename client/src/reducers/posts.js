@@ -2,8 +2,7 @@ import {
     CREATE,
     READ,
     UPDATE,
-    DELETE,
-    LIKE
+    DELETE
 } from '../constants/actionTypes'
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -17,8 +16,6 @@ export default (posts = [], action) => {
             return posts.map((post) => post._id === action.payload._id ? action.payload : post);
         case DELETE:
             return posts.filter((post) => post._id !== action.payload )
-        case LIKE:
-            return posts.map((post) => post._id === action.payload._id ? action.payload : post);
         default:
             return posts;
     }

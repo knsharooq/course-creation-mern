@@ -1,13 +1,15 @@
 import "./Post.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faEnvelopeOpen,
+  faGraduationCap,
   faPencilAlt,
-  faThumbsUp,
+  faPhoneAlt,
   faTrash,
+  faUserAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import { deletePost, likePost } from "../../../actions/posts";
+import { deletePost } from "../../../actions/posts";
 import { useDispatch } from "react-redux";
-import moment from "moment";
 import { Button, Modal, ModalBody, ModalFooter } from "reactstrap";
 import { useState } from "react";
 
@@ -34,37 +36,50 @@ export const PostCard = ({ post, setEditId = () => {} }) => {
   }
   return (
     <div className="post-card p-3 d-flex flex-column justify-content-between w-100">
-      <div className="mb-2">
-        <p className="title mb-0">{post.title}</p>
-        <div className="message">{post.message}</div>
+      <div className="d-flex">
+        <FontAwesomeIcon icon={faUserAlt} size="2x" color="gray" />
+        <span className="name mx-3">{post.name}</span>
       </div>
       <div>
-        <p className="sign mb-0">Created by {post.creator}</p>
-        <p className="sign mb-0">{moment(post.createdAt).fromNow()}</p>
-        <div className="d-flex justify-content-between mb-1 mt-2">
+        <div className="d-flex my-3 align-items-center">
+          <FontAwesomeIcon icon={faPhoneAlt} color="gray" />
+          <span className="info mx-2">{post.phone}</span>
+        </div>
+        <div className="d-flex my-3 align-items-center">
+          <FontAwesomeIcon icon={faEnvelopeOpen} color="gray" />
+          <span className="info mx-2">{post.mail}</span>
+        </div>
+        <div className="d-flex my-3 align-items-center">
+          <FontAwesomeIcon icon={faGraduationCap} color="gray" />
+          <span className="info mx-2">{post.course}</span>
+        </div>
+      </div>
+      <div className="d-flex justify-content-between">
           <button
-            className="bg-transparent border-0 icon"
-            onClick={() => dispatch(likePost(post._id))}
+            className="bg-transparent border-0 button"
+            onClick={() =>{}}
           >
-            <FontAwesomeIcon icon={faThumbsUp} color="gray" />
-            <span className="mx-1 text-dark">{post.likeCount}</span>
+            <span className="text-dark text-decoration-underline ">More Info</span>
           </button>
-          <div className="mx-1">
+          <button
+            className="bg-transparent border-0 button"
+            onClick={() =>{}}
+          >
+            <span className="text-dark text-decoration-underline">Comments</span>
+          </button>
             <button
-              className="bg-transparent border-0 icon"
+              className="bg-transparent border-0"
               onClick={() => setEditId(post._id)}
             >
-              <FontAwesomeIcon className="mx-3" icon={faPencilAlt} color="gray" />
+              <FontAwesomeIcon icon={faPencilAlt} color="gray" />
             </button>
             <button
-              className="bg-transparent border-0 icon"
+              className="bg-transparent border-0"
               onClick={() => setIsModalOpen(true)}
             >
               <FontAwesomeIcon icon={faTrash} color="gray" />
             </button>
-          </div>
         </div>
-      </div>
       {getModal()}
     </div>
   );
