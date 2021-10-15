@@ -2,7 +2,7 @@
 .post-card {
     background-color: rgba(255, 255, 255);
     color: rgb(47, 49, 28);
-    box-shadow: 2px 4px 4px 2px rgb(216, 207, 207);
+    box-shadow: 1px 2px 2px 1px rgb(216, 207, 207);
     border-radius: 10px;
     height: 250px;
 }
