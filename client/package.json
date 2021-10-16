@@ -18,6 +18,7 @@
     "react-file-base64": "^1.0.3",
     "react-redux": "^7.2.5",
     "react-scripts": "4.0.3",
+    "react-select": "^5.1.0",
     "react-strap": "^0.0.1",
     "reactstrap": "^8.10.0",
     "redux": "^4.1.1",

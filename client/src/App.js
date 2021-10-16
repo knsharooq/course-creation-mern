@@ -17,11 +17,11 @@ const App = () =>{
         <Container fluid className = "main-background p-0">
             <Row className="mx-0 pt-3">
                 <Col sm={12} className="mt-3 p-0">
-                    <Row className="m-0 d-flex justify-content-around">
-                        <Col sm={8} className="mx-1">
+                    <Row className="m-0 d-flex justify-content-between">
+                        <Col sm={8} className="mx-1 posts">
                             <Posts setEditId={setEditId}/>
                         </Col>
-                        <Col sm={3} className="mt-4">
+                        <Col sm={3} className="mt-4 mx-5">
                             <AddOrEditForm editId={editId} setEditId={setEditId}/>
                         </Col>
                     </Row>

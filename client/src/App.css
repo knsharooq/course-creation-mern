@@ -2,3 +2,7 @@
     min-height: 100vh;
     color: rgb(58, 64, 88);
 }
+
+.posts {
+    flex-grow: 1;
+}
