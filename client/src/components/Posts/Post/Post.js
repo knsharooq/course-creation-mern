@@ -25,7 +25,17 @@ import {
 } from "reactstrap";
 import { useState } from "react";
 import Select from "react-select";
-import { admissionOptions, affiliationOptions, documentOptions, entranceOptions, intakeDurationOptions, intakeMonthOptions, serviceOptions, specializationOptions, tagOptions } from "../../componentConstants";
+import {
+  admissionOptions,
+  affiliationOptions,
+  documentOptions,
+  entranceOptions,
+  intakeDurationOptions,
+  intakeMonthOptions,
+  serviceOptions,
+  specializationOptions,
+  tagOptions,
+} from "../../componentConstants";
 
 export const PostCard = ({ post, setEditId = () => {} }) => {
   const dispatch = useDispatch();
@@ -38,9 +48,13 @@ export const PostCard = ({ post, setEditId = () => {} }) => {
   const [affiliation, setAffiliation] = useState(post?.details?.affiliation);
   const [entrance, setEntrance] = useState(post?.details?.entrance);
   const [documents, setDocuments] = useState(post?.details?.documents);
-  const [specialization, setSpecialization] = useState(post?.details?.specialization);
+  const [specialization, setSpecialization] = useState(
+    post?.details?.specialization
+  );
   const [intakeMonth, setIntakeMonth] = useState(post?.details?.intakeMonth);
-  const [intakeDuration, setIntakeDuration] = useState(post?.details?.intakeDuration);
+  const [intakeDuration, setIntakeDuration] = useState(
+    post?.details?.intakeDuration
+  );
   const [tagName, setTagName] = useState(post?.details?.tagName);
   const [tagDesc, setTagDesc] = useState(post?.details?.tagDesc);
   const [isMainEmpty, setIsMainEmpty] = useState(false);
@@ -77,20 +91,42 @@ export const PostCard = ({ post, setEditId = () => {} }) => {
   };
 
   const onSaveInfo = () => {
-    setIsMainEmpty(false); 
-    if(!admission || !service || !documents || !specialization || !intakeMonth || !intakeDuration){
-    setIsMainEmpty(true); 
-    return;
+    setIsMainEmpty(false);
+    setIsSaved(false);
+    if (
+      !admission ||
+      !service ||
+      !documents ||
+      !specialization ||
+      !intakeMonth ||
+      !intakeDuration
+    ) {
+      setIsMainEmpty(true);
+      return;
     }
     const newPost = {
       ...post,
-      details: { ...(post?.details || {}), admission , service, affiliation: affiliation || [], entrance: entrance || [] , documents, specialization, intakeMonth, intakeDuration, tagName: tagName || {}, tagDesc: tagDesc || "" },
+      details: {
+        ...(post?.details || {}),
+        admission,
+        service,
+        affiliation: affiliation || [],
+        entrance: entrance || [],
+        documents,
+        specialization,
+        intakeMonth,
+        intakeDuration,
+        tagName: tagName || {},
+        tagDesc: tagDesc || "",
+      },
     };
     dispatch(updatePost(post._id, newPost));
     setIsSaved(true);
   };
 
   const getInfoModal = () => {
+    // setIsMainEmpty(false)
+    // setIsSaved(false);
     return (
       <Modal
         isOpen={isInfoModalOpen}
@@ -102,78 +138,202 @@ export const PostCard = ({ post, setEditId = () => {} }) => {
           <Container>
             <Row>
               <Col md={6}>
-                <Label id="admission-label" for="admission-input" className="mb-1">Admission<span className="text-danger">*</span></Label>
-                <Select id="admission-input" options={admissionOptions} value={admission} isClearable onChange={val => setAdmission(val)} placeholder="Select Admission"/>
+                <Label
+                  id="admission-label"
+                  for="admission-input"
+                  className="mb-1"
+                >
+                  Admission<span className="text-danger">*</span>
+                </Label>
+                <Select
+                  id="admission-input"
+                  options={admissionOptions}
+                  value={admission}
+                  isClearable
+                  onChange={(val) => setAdmission(val)}
+                  placeholder="Select Admission"
+                />
               </Col>
               <Col md={6}>
-                <Label id="service-label" for="service-input" className="mb-1">Service<span className="text-danger">*</span></Label>
-                <Select id="service-input" options={serviceOptions} value={service} isClearable onChange={val => setservice(val)} placeholder="Select service"/>
+                <Label id="service-label" for="service-input" className="mb-1">
+                  Service<span className="text-danger">*</span>
+                </Label>
+                <Select
+                  id="service-input"
+                  options={serviceOptions}
+                  value={service}
+                  isClearable
+                  onChange={(val) => setservice(val)}
+                  placeholder="Select service"
+                />
               </Col>
             </Row>
             <Row className="mt-3">
               <Col md={6}>
-                <Label id="affiliation-label" for="affiliation-input" className="mb-1">Course Affiliation</Label>
-                <Select id="affiliation-input" options={affiliationOptions} isMulti value={affiliation} onChange={val => setAffiliation(val)} placeholder="Select Course Affiliation"/>
+                <Label
+                  id="affiliation-label"
+                  for="affiliation-input"
+                  className="mb-1"
+                >
+                  Course Affiliation
+                </Label>
+                <Select
+                  id="affiliation-input"
+                  options={affiliationOptions}
+                  isMulti
+                  value={affiliation}
+                  onChange={(val) => setAffiliation(val)}
+                  placeholder="Select Course Affiliation"
+                />
               </Col>
               <Col md={6}>
-                <Label id="entrance-label" for="entrance-input" className="mb-1">Entrance Required</Label>
-                <Select id="entrance-input" options={entranceOptions} isMulti value={entrance} onChange={val => setEntrance(val)} placeholder="Select Entrance"/>
+                <Label
+                  id="entrance-label"
+                  for="entrance-input"
+                  className="mb-1"
+                >
+                  Entrance Required
+                </Label>
+                <Select
+                  id="entrance-input"
+                  options={entranceOptions}
+                  isMulti
+                  value={entrance}
+                  onChange={(val) => setEntrance(val)}
+                  placeholder="Select Entrance"
+                />
               </Col>
             </Row>
             <Row className="mt-3">
               <Col md={6}>
-                <Label id="documents-label" for="documents-input" className="mb-1">Documents Required<span className="text-danger">*</span></Label>
-                <Select id="documents-input" options={documentOptions} isMulti value={documents} onChange={val => setDocuments(val)} placeholder="Select Documents"/>
+                <Label
+                  id="documents-label"
+                  for="documents-input"
+                  className="mb-1"
+                >
+                  Documents Required<span className="text-danger">*</span>
+                </Label>
+                <Select
+                  id="documents-input"
+                  options={documentOptions}
+                  isMulti
+                  value={documents}
+                  onChange={(val) => setDocuments(val)}
+                  placeholder="Select Documents"
+                />
               </Col>
               <Col md={6}>
-                <Label id="specialization-label" for="specialization-input" className="mb-1">Specialization<span className="text-danger">*</span></Label>
-                <Select id="specialization-input" options={specializationOptions} isMulti value={specialization} onChange={val => setSpecialization(val)} placeholder="Select Specialization"/>
+                <Label
+                  id="specialization-label"
+                  for="specialization-input"
+                  className="mb-1"
+                >
+                  Specialization<span className="text-danger">*</span>
+                </Label>
+                <Select
+                  id="specialization-input"
+                  options={specializationOptions}
+                  isMulti
+                  value={specialization}
+                  onChange={(val) => setSpecialization(val)}
+                  placeholder="Select Specialization"
+                />
               </Col>
             </Row>
             <Row className="mt-4">
               <Col md={12}>
-              <h6>Intake Details:</h6>
+                <h6>Intake Details:</h6>
               </Col>
               <Col md={6}>
-                <Label id="intakeMonth-label" for="intakeMonth-input" className="mb-1">Intake<span className="text-danger">*</span></Label>
-                <Select id="intakeMonth-input" options={intakeMonthOptions} isClearable value={intakeMonth} onChange={val => setIntakeMonth(val)} placeholder="Select Intake Month"/>
+                <Label
+                  id="intakeMonth-label"
+                  for="intakeMonth-input"
+                  className="mb-1"
+                >
+                  Intake<span className="text-danger">*</span>
+                </Label>
+                <Select
+                  id="intakeMonth-input"
+                  options={intakeMonthOptions}
+                  isClearable
+                  value={intakeMonth}
+                  onChange={(val) => setIntakeMonth(val)}
+                  placeholder="Select Intake Month"
+                />
               </Col>
               <Col md={6}>
-                <Label id="intakeDuration-label" for="intakeDuration-input" className="mb-1">Duration<span className="text-danger">*</span></Label>
-                <Select id="intakeDuration-input" options={intakeDurationOptions} isMulti value={intakeDuration} onChange={val => setIntakeDuration(val)} placeholder="Select Intake Durations"/>
+                <Label
+                  id="intakeDuration-label"
+                  for="intakeDuration-input"
+                  className="mb-1"
+                >
+                  Duration<span className="text-danger">*</span>
+                </Label>
+                <Select
+                  id="intakeDuration-input"
+                  options={intakeDurationOptions}
+                  isMulti
+                  value={intakeDuration}
+                  onChange={(val) => setIntakeDuration(val)}
+                  placeholder="Select Intake Durations"
+                />
               </Col>
             </Row>
             <Row className="mt-4">
               <Col md={12}>
-              <h6>Course Tag:</h6>
+                <h6>Course Tag:</h6>
               </Col>
               <Col md={6}>
-                <Label id="tagName-label" for="tagName-input" className="mb-1">Tag</Label>
-                <Select id="tagName-input" options={tagOptions} isClearable value={tagName} onChange={val => setTagName(val)} placeholder="Select Tag"/>
+                <Label id="tagName-label" for="tagName-input" className="mb-1">
+                  Tag
+                </Label>
+                <Select
+                  id="tagName-input"
+                  options={tagOptions}
+                  isClearable
+                  value={tagName}
+                  onChange={(val) => setTagName(val)}
+                  placeholder="Select Tag"
+                />
               </Col>
               <Col md={6}>
-                <Label id="desc-label" for="desc-input" className="mb-1">Description</Label>
-                <Input id="desc-input" isClearable value={tagDesc} onChange={e => setTagDesc(e.target.value)} placeholder="Enter Description"/>
+                <Label id="desc-label" for="desc-input" className="mb-1">
+                  Description
+                </Label>
+                <Input
+                  id="desc-input"
+                  value={tagDesc}
+                  onChange={(e) => setTagDesc(e.target.value)}
+                  placeholder="Enter Description"
+                />
               </Col>
             </Row>
           </Container>
         </ModalBody>
         <ModalFooter className="d-flex justify-content-between px-4">
           <div>
-          {isMainEmpty && <Alert color="danger" className="py-1 m-0 px-2">Fill all the fields with *</Alert>}
-          {isSaved && <Alert color="success" className="py-1 m-0 px-2">Saved successfully!</Alert>}
+            {isMainEmpty && (
+              <Alert color="danger" className="py-1 m-0 px-2">
+                Fill all the fields with *
+              </Alert>
+            )}
+            {isSaved && (
+              <Alert color="success" className="py-1 m-0 px-2">
+                Saved successfully!
+              </Alert>
+            )}
           </div>
           <div>
-          <Button
-            color="danger"
-            onClick={() => setIsInfoModalOpen(!isInfoModalOpen)}
-            className="mx-4"
-          >
-            Close
-          </Button>
-          <Button color="success" onClick={() => onSaveInfo()}>
-            Save
-          </Button>
+            <Button
+              color="danger"
+              onClick={() => setIsInfoModalOpen(!isInfoModalOpen)}
+              className="mx-4"
+            >
+              Close
+            </Button>
+            <Button color="success" onClick={() => onSaveInfo()}>
+              Save
+            </Button>
           </div>
         </ModalFooter>
       </Modal>
@@ -202,8 +362,12 @@ export const PostCard = ({ post, setEditId = () => {} }) => {
         <ModalBody className="modal-body-scroll d-flex flex-column justify-content-between">
           <div>
             {post?.details?.comments?.length ? (
-              post?.details?.comments?.map((item) => {
-                return <p className="p-3 comment">{item}</p>;
+              post?.details?.comments?.map((item, index) => {
+                return (
+                  <p key={`comment-${index}`} className="p-3 comment">
+                    {item}
+                  </p>
+                );
               })
             ) : (
               <p className="text-danger">No Comments Yet</p>
